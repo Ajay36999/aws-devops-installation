@@ -9,3 +9,11 @@ echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
 sudo apt update
 sudo apt install jenkins -y
 
+next,
+cd /var/lib/jenkins
+/var/lib/jenkins# ls
+/var/lib/jenkins# cd secrets
+/var/lib/jenkins/screts# ls
+/var/lib/jenkins/screts# cat initialadminpassword
+copy the password..
+
