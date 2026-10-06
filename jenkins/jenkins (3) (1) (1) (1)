@@ -1,0 +1,61 @@
+apt-get update
+
+
+/var/log/jenkins/jenkins.log
+
+/var/lib/jenkins/secrets/initialAdminPassword
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys
+
+/usr/lib/jvm/java-8-openjdk-amd64 
+/usr/lib/jvm/java-11-openjdk-amd64
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
+apt-get install openjdk-8-jdk
+
+https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04
+
+install java (use : apt-get install default-jdk)
+
+sudo apt-get update
+sudo apt install openjdk-8-jdk
+sudo apt install openjdk-11-jdk -y
+sudo apt install openjdk-17-jdk -y
+sudo apt install fontconfig openjdk-21-jre -y
+
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update
+
+sudo apt install jenkins -y
+
+***** /var/lib/jenkins ******
+
+1, config.xml (this is where we can change security permissions)
+2, usercontent (this is where i can write content for users)
+3, users  (this is where we can see users info credencials)
+4, secrets (maneges slaves don't change anything in it)
+5, jobs (we can see jobs info here)
+6, plugins (we can see attached plugins)
+
+*** /var/cache/jenkins *** (this is where your jenkins installation present)
+
+/var/lib/jenkins/workspace/pipeline-job-CICD/target/sampleapp.war
+
+sudo apt-get update
+sudo apt install fontconfig openjdk-21-jre -y
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt update
+sudo apt install jenkins -y
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCEF32E745F2C3D5
