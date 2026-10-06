@@ -1,0 +1,100 @@
+ANSIBLE INSTALLATION
+
+MASTER
+1, apt-get update
+2, apt-get install software-properties-common
+3, apt-add-repository ppa:ansible/ansible
+4, apt-get update
+5, apt-get install ansible
+6, ssh-keygen => copy id_rsa.pub
+7, goto vi /etc/ansible/hosts (/etc/ansible/roles/inventory  here aslo we can give hosts)
+ Ex : [webappraghu]
+      IP of slave
+      [webservers]
+server1.cyberciti.biz
+104.20.187.5
+104.20.186.5
+
+[devservers]
+10.98.222.4
+10.98.222.7
+10.98.222.8
+
+8, ansible -m shell -a 'free -m' webappraghu  ( ansible -i hosts -m shell -a 'uptime' all )
+ansible-doc -l
+ansible-doc apt
+ansible 172.31.42.123 -m apt -a "name=nginx state=installed"
+
+9, create filename.yml (we can create anywhere and write configurations)
+10, ansible-playbook filename.yml --check (if we remove --check it will implement push configuration)
+
+---
+- hosts: droplets
+  tasks:
+    - name: Installs nginx web server
+      apt: pkg=nginx state=installed update_cache=true
+      notify:
+        - start nginx
+
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started
+
+---
+- hosts: droplets
+  tasks:
+    - name: Installs nginx web server
+      apt: pkg=nginx state=present update_cache=true
+
+    - name: Upload default index.html for host
+      copy: src=index.html dest=/var/www/html/index.nginx-debian.html mode=0644
+      notify:
+        - start nginx
+
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started
+
+We can then make a directory called static_files in our current directory and place an index.html file inside.
+
+SLAVE
+
+1, apt-get update 
+2, apt-get install python -y
+3, vi /root/.ssh/authorized_keys paste id_rsa.pub
+4, ifconfig copy ip and past it in master /etc/ansible/hosts
+
+Install ansible on ubuntu 18.04 & 22.04
+
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update
+sudo apt install ansible -y
+
+Re-enable Legacy RSA Keys (Not Recommended)If you cannot upgrade your client and must use older RSA keys, you can temporarily re-enable them by adding the following lines to /etc/ssh/sshd_config via the serial console or a User Data script
+
+HostKeyAlgorithms +ssh-rsa
+PubkeyAcceptedAlgorithms +ssh-rsa
+
+Action: Restart the service after changes: sudo systemctl restart ssh
+
+sudo vi /etc/ansible/hosts
+[webservers]
+nodeip-or-private-dns
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+make an ansible.cfg file inside /etc folder and include these below lines.
+
+[defaults]
+host_key_checking = False
+
+[dashboard:vars]
+ansible_ssh_private_key_file=./mykeypair.pem
+
+[dashboard]
+1.2.3.4 dashboard_domain=my.domain.info 
+
+https://www.digitalocean.com/community/tutorials/how-to-create-ansible-playbooks-to-automate-system-configuration-on-ubuntu
+
+https://www.cyberciti.biz/faq/how-to-install-and-configure-latest-version-of-ansible-on-ubuntu-linux/
