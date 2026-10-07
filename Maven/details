@@ -1,1 +1,79 @@
 [process of maven intallation]
+apt-get update && apt install maven -y && apt install tree
+mvn --version
+((java version 21 vundhi edhi old version but manki 11 kavali new version so first old version run chey tharvatha new 11 ki change chey))
+
+cd /usr/share/maven
+cd /usr/share/maven# ls
+cd /usr/share/maven# mvn archetype:generate
+:2364
+choose a number :9:5
+artifactid : project123
+snapshot : 1.0
+package : myapp
+: y
+
+
+
+/usr/share/maven# tree project123
+/usr/share/maven# cd project123
+'' ''  ''  ''  ''# ls
+/usr/share/maven# mvn validate
+/usr/share/maven# mvn  package
+((error vasthundhi endhuku ante akkada source code ledhu))
+
+
+
+((ipudu new 11 version ki change cheydham))
+cd
+root# sudo apt-get update -y
+root# mvn --version 
+21 vundhi chudu
+root# sudo apt install openjdk-11-jdk -y
+root# mvn --version
+11 ki change iendhi
+
+
+
+next,
+cd /opt/
+((download and extract chesina files ekkada save avuthai opt lo))
+Go to the google and enter the Download apache maven enter and then wedsite open chey then kindhaki scrole chey akkada))
+apache-maven-3.9.16-bin.tar.gz file link copy chey
+cd /opt/
+opt# wget paste the copy link here
+opt# ls
+apache-maven-3.9.16-bin.tar.gz large file kabati compress cheyali
+opt# tar -xzf apache-maven-3.9.16-bin.tar.gz
+opt# ls
+apache-maven-3.9.16    apache-maven-3.9.16-bin.tar.gz
+file name change chey
+opt# mv apache-maven-3.9.16  maven
+opt# ls
+maven   apache-maven-3.9.16-bin.tar.gz
+
+
+
+
+opt# sudo vi /etc/profile.d/mavenenv.sh
+file open avundhi edhi enter chey
+export M2_HOME=/opt/maven
+export PATH=${M2_HOME}/bin:${PATH}
+:wq
+
+
+opt# sudo chmod +x /etc/profile.d/mavenenv.sh
+opt# sudo bash /etc/profile.d/mavenenv.sh
+maven install iendhi ipudu 11 ki change cheyali
+opt# export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+opt# mvn --version
+11 vachindhi
+
+
+
+opt# cd maven
+opt/maven# git clone Ajaykumar --> ekada repostiory evali 
+opt/maven# cd ajaykumar
+opt/maven/ajaykumar# ls
+opt/maven/ajaykumar# mvn package
+[BUILD SUCESS] anee vasthundhi code corret gaa vunte so war file kuda generate avuthundhi adhi Tomcat ki vellali
