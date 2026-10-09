@@ -1,0 +1,50 @@
+Installing Apache Tomcat 
+Step 1: Create the Tomcat Folder
+Logged in as root, within the opt folder make a directory called tomcat and cd into that folder after completion.
+apt-get update
+mkdir /opt/tomcat
+cd /opt/tomcat
+Step 2: Install Tomcat Through Wget
+Click this link to the Apache Tomcat 8 Download site. Place you cursor under 8.5.32  Binary Distributions, right click on the tar file and select copy link address (as shown in the picture below). At the time of this article Tomcat 8 is the newest version but feel free to pick whatever version is more up-to-date.
+
+Next from your server, use wget command to download the tar to  the tomcat folder from the URL you copied in the previous step:
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.91/bin/apache-tomcat-9.0.91.tar.gz
+Note
+You can down the file to your local desktop, but you’ll then want to transfer the file to your Liquid Web server. If assistance is needed, check out this article: Using SFTP and SCP Instead of FTP
+After the download completes, decompress the file in your tomcat folder:
+tar -xvzf apache-tomcat-8.5.100.tar.gz
+Step 3: Install Java
+Before you can use Tomcat you’ll have to install the Java Development Kit (JDK). Beforehand, check to see if Java is installed:
+java -version
+If that command returns the following message then Java has yet to be installed:
+The program 'java' can be found in the following packages:
+To install Java, simply run the following command (and at the prompt enter Y to continue):
+
+sudo apt install openjdk-11-jdk -y
+
+##apt-get install default-jdk -y
+Step 4: Configure .bashrc File
+Set the environment variables in .bashrc with the following command:
+vi ~/.bashrc
+Add this information to the end of the file:
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export CATALINA_HOME=/opt/tomcat/apache-tomcat-9.0.115
+Note
+Verify your file paths! If you downloaded a different version or already installed Java, you may have to edit the file path or name. Older versions of Java may say java-7-openjdk-amd64 instead of java-1.8.0-openjdk-amd64 . Likewise, if you installed Tomcat in a different folder other then /opt/tomcat (as suggested) you’ll indicate the path in your bash file and edit the lines above.
+Save your edits and exit from the .bashrc file, then run the following command to register the changes:
+. ~/.bashrc
+Step 5: Test Run
+Tomcat and Java should now be installed and configured on your server. To activate Tomcat, run the following script:
+$CATALINA_HOME/binc
+You should get a result similar to:
+Using CATALINA_BASE: /opt/tomcat
+Using CATALINA_HOME: /opt/tomcat
+Using CATALINA_TMPDIR: /opt/tomcat/temp
+Using JRE_HOME: /usr/lib/jvm/java-7-openjdk-amd64/
+Using CLASSPATH: /opt/tomcat/bin/bootstrap.jar:/opt/tomcat/bin/tomcat-juli.jar
+Tomcat started
+To verify that Tomcat is working visit the ip address of you server:8080 in a web browser. For example http://127.0.0.1:8080.
+
+
+jar -xvf sample.war
+ scp -i key.pem src dest
