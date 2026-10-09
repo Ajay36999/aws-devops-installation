@@ -31,3 +31,21 @@ then copy the tomcat ip address and enter in google task bar tomcat will be open
 /opt/tomcat/apache.tomcat.9.0.122.tar# cd webapps
 /opt/tomcat/apache.tomcat.9.0.122.tar/webapps# ls
 /opt/tomcat/apache.tomcat.9.0.122.tar/webapps# .war file ekkada vundali apudu tomcat lo output vasthundhi
+
+
+
+tomcat manaki 8080 port tho run avuthundhi kadha so naku 1234 tho run avali ante prosss
+/opt/tomcat/apache.tomcat.9.0.122.tar# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar# cd conf
+/opt/tomcat/apache.tomcat.9.0.122.tar/conf# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar/conf# vi server.xml
+scrol down
+<connetor port="8080" ---> so ekkad change chey 1234 anee
+:wq
+
+then thravatha tomcat stop and start cheyali
+/opt/tomcat/apache.tomcat.9.0.122.tar# cd bin
+/opt/tomcat/apache.tomcat.9.0.122.tar/bin# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar/bin# bash shutdown.sh
+/opt/tomcat/apache.tomcat.9.0.122.tar/bin# bash startup.sh
+then ipudu copy tomcat ip addres enter in google ex: 192:365:6:1234/sampleapp output vasthundhi
