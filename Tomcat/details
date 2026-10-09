@@ -49,3 +49,57 @@ then thravatha tomcat stop and start cheyali
 /opt/tomcat/apache.tomcat.9.0.122.tar/bin# bash shutdown.sh
 /opt/tomcat/apache.tomcat.9.0.122.tar/bin# bash startup.sh
 then ipudu copy tomcat ip addres enter in google ex: 192:365:6:1234/sampleapp output vasthundhi
+
+next,
+ipudu tomcat home page lo mangerapp ki login avali ante process
+/opt/tomcat/apache.tomcat.9.0.122.tar# cd conf
+/opt/tomcat/apache.tomcat.9.0.122.tar/conf# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar/conf# vi tomcat-users.xml
+file open avuthundhi total information delete chey sir echina syntax paste chey ex:
+<?xml version='1.0' encoding='utf-8'?>
+<tomcat-users>  
+  <role rolename="manager-gui"/> 
+  <role rolename="manager-script"/>  
+  <role rolename="manager-jmx"/>  
+  <role rolename="manager-status"/>  
+  <user username="tomcat" password="password" roles="manager-gui,manager-script,manager-jmx,manager-status"/>  
+</tomcat-users>  
+:wq
+user create iendhi
+
+then tharavatha
+/opt/tomcat/apache.tomcat.9.0.122.tar/# cd webapps
+/opt/tomcat/apache.tomcat.9.0.122.tar/webapps# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar/webapps# cd manger
+/opt/tomcat/apache.tomcat.9.0.122.tar/webapps/manger# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar/webapps/manger# cd META-INF
+/opt/tomcat/apache.tomcat.9.0.122.tar/webapps/manger/META-INF# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar/webapps/manger/META-INF# vi context.xml
+file open avuthundhi soo epudu commit cheyali ante like same
+ <!--
+  <Valve className="org.apache.catalina.valves.RemoteCIDRValve"
+          allow="127.0.0.0/8,::1/128" />
+   -->
+:wq
+then malli tomcat nee stop and start cheyali
+ipudu tomact home page lo mangerapp click chesthe user: name and password: password aduguthundhi evu 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
