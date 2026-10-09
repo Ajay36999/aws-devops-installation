@@ -1,1 +1,33 @@
 [tomcat installation]
+apt-get update
+mkdir /opt/tomcat
+cd /opt/tomcat
+ google lo tomcat 9 download anee enter chey website lo ki velli kindha ki scrole down .tar.gz9pgp.sha512 anee vuntundhi copy the link
+/opt/tomcat# wget past the link here
+/opt/tomcat# ls
+apache.tomcat.9.0.122.tar.gz large file so compress
+/opt/tomcat# tar -xzf apache.tomcat.9.0.122.tar.gz
+/opt/tomcat# ls
+apache.tomcat.9.0.122.tar apache.tomcat.9.0.122.tar.gz
+/opt/tomcat# sudo apt install openjdk-11-jdk -y
+
+
+/opt/tomcat# vi ~/.bashrc
+#
+#
+#
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export CATALINA_HOME=/opt/tomcat/apache-tomcat-9.0.115 --> change last number 122
+:wq
+
+now start the tomcat;
+/opt/tomcat# cd apache.tomcat.9.0.122.tar
+/opt/tomcat/apache.tomcat.9.0.122.tar# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar# cd bin
+/opt/tomcat/apache.tomcat.9.0.122.tar/bin# bash startup.sh
+
+then copy the tomcat ip address and enter in google task bar tomcat will be open
+
+/opt/tomcat/apache.tomcat.9.0.122.tar# cd webapps
+/opt/tomcat/apache.tomcat.9.0.122.tar/webapps# ls
+/opt/tomcat/apache.tomcat.9.0.122.tar/webapps# .war file ekkada vundali apudu tomcat lo output vasthundhi
