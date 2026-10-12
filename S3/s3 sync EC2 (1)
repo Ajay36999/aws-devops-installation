@@ -1,0 +1,15 @@
+we need to know IAM, S3, EC2 (to sync s3 to EC2)
+
+1 (EC2 TO S3)
+
+1, create a user in IAM (permissins  AdministratorAccess, and download access key info)
+2, launch an instance while launching instance use created iam role
+3, aws configure (run this command)
+4, aws s3 sync /var/www/html s3://bucketname/location (we have to give source and destination)
+
+2 (S3 TO EC2)
+
+1, region should be same (bucket and EC2)
+2, create a role in IAM (S3 full access for EC2 )
+3, goto the location where you wants to sync 
+4, aws s3 cp s3://bucketname/filename /var/www/html (source and destionation)
