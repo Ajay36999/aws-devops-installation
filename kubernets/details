@@ -90,6 +90,36 @@ service create cheyali
 kubectl create service nodeport nginx --tcp=80:80
 kubectl get svc
 copy the node server ip address enter in google ex: 16.113.120:32697  --->out put vasthundhi nginx dhi
+edhi normal service create cheyatam
+ipudu .yml tho chedham ex:-
+vi service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+          app: nginx
+  type: NodePort
+  ports:
+    - protocol: TCP
+      nodePort: 31000
+      port: 80
+      targetPort: 80
+:wq
+kubectl create -f service.yml
+kubectl get svc
+
+
+next,
+ipudu demployment lo em anna changes chesthe use this commond
+kubectl apply -f deployment.yml
+same service kuda
+kubectl apply -f service.yml
+
+
+next,
+
 
 
 
