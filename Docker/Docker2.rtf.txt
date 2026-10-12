@@ -1,0 +1,58 @@
+﻿docker search imagename              (to search available images)
+docker search --filter=stars=100  imagename  (to search images above 100 stars rating)
+docker pull imagename                    (to pull image from dockerhub)
+docker pull imagename:version   (to pull selected version)
+docker run -it --name devops1 ubuntu:latest /bin/bash    (to provide name to container)
+docker rename old-name new-name                                         (to rename container)
+docker run -it -h hostname imagename    (to change container hostname)
+docker rmi $(docker images -q)    (to remove all images)
+docker rm -v -f $(docker ps -qa)   (to remove all containers at a time)
+docker exec -it -u username container-id /bin/bash       (to login to selected user directly)
+docker run -it --name devops1 -v /root/project1:/tmp ubuntu   (to share local directory to container)
+docker inspect container-id             (to check container details)
+docker stats container-id                   (to check usage and limits)
+docker run -itd -m 300M image-name     (providing  limited ram usage to container -v for volumes)
+docker update -m 200M container-id     (to modify container limits)
+docker run -it --volumes-from container-id imagename        (providing shared volumes to new container)
+docker logs container-id                            (to check used commands inside container)
+Dockerfile
+FROM ubuntu:18.04
+RUN apt-get update
+RUN apt-get install ansible -y
+
+
+Docker file
+FROM nginx
+RUN rm -rf /usr/share/nginx/html/*
+COPY index.html /usr/share/nginx/html
+RUN service nginx restart
+
+
+Dockerfile
+FROM tomcat:8.5.16-jre8-alpine
+RUN rm -rf /usr/local/tomcat/webapps/*
+COPY gameoflife.war /usr/local/tomcat/webapps
+RUN chmod 777 /usr/local/tomcat/webapps/gameoflife.war
+CMD ["catalina.sh", "run"] 
+https://docs.docker.com/engine/reference/builder/   (for dockerfile instructions)
+docker build -t "image:tag"  .                (to build image from docker file -t for name of image we can also add new line in dockerfile after build)
+docker commit -m "message" conatainer-id imagename:version-name (to build image from running container)
+docker tag old-image-name new-image-name (to change image name)
+docker login                                              (provide username and password)
+docker push imagename:versionname  (to publish image to docker hub)    
+docker network ls                                        (to check available networks)
+docker network inspect network-name       (to check network bridge details)
+docker network create --subnet 10.1.0.0/16 --gateway 10.1.0.1 --ip-range 10.1.5.0/24 --driver=bridge --label=ownnetwork bridge23                              (to creat a network)
+docker inspect container-id | grep IPA                                           (to check container ip)
+docker run -it --net bridge23 image-name                                   (to run container with seleted network run hostname -I to check ip of container)
+docker run -it --net bridge23 --ip 10.1.5.55 image-name        (to run container with selected ip)
+
+
+
+
+docker volume create db_data
+docker network create mysqlnet
+docker run --name test-mysql -e MYSQL_ROOT_PASSWORD=somewordpress -e MYSQL_DATABASE=wordpress -e MYSQL_USER=wordpress -e MYSQL_PASSWORD=wordpress -v db_data:/var/lib/mysql --net=mysqlnet -d mysql:5.7
+
+
+docker run --name test-wordpress -e WORDPRESS_DB_HOST=test-mysql:3306 -e WORDPRESS_DB_USER=wordpress -e WORDPRESS_DB_PASSWORD=wordpress -e WORDPRESS_DB_NAME=wordpress --net=mysqlnet -p 8081:80 -d wordpress:latest
