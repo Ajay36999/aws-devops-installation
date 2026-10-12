@@ -1,1 +1,61 @@
-hi
+[Docker installation]
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update
+sudo apt install docker-ce -y
+
+
+check :
+docker ps
+docker ps -a
+
+basic commonds:
+docker run -it ubuntu:20.04 /bin/bash     -----> operting systems ki e commond use chesthan -it ,,,,, one thing commond run chesaka container lo ki vellatham then (cd) use cheyali
+e container operate system chudali ante com: cat /etc/os-relase
+[exit] use chesthe total container resource stop avuthundhi
+[cltr+p+q] use chesthe stop avadhu
+malli container loki vellali ante com: docker attach containerID
+container remove cheyali ante com: docker kill containerID
+docker ps
+
+next,
+install different types of containers ex: nginx, jenkins, tomcat
+first: nginx
+docker run -d nginx
+docker ps
+docker run -d -p 1234:80 nginx
+docker ps
+container loki vellali ante com: docker exec -it containerID /bin/bash
+copy the server ipaddress ex:18.60.186.73:1234 nginx will be open
+
+second: jenkins
+docker search jenkins
+docker run -d -p jenkins/jenkins
+docker ps
+docker exec -it containerID /bin/bash
+copy the nodeport and enter into the google ex:192:45:60:1234
+
+
+third: Tomcat
+docker pull tomcat:jre25-temurin-noble
+docker ps
+docker run -d -p tomcat:jre25-temurin-noble
+docker ps
+copy the nodeport and enter into the google ex:192:45:60:1334
+
+
+next,,
+container name change cheyali ante
+docker run  -itd --name newname imagename
+docker ps
+
+
+
+
+
+
+
+
+
