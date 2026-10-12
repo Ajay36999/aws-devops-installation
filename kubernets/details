@@ -52,6 +52,50 @@ ipudu check chey
 kubectl get nodes
 ready anee vasthundhi
 
+next,
+ipudu all components kuda check chey
+kubectl get pods --all-namespaces
+
+
+next,
+so ipudu nenu deployment cheyali ante .yml file create cheyali ex:- vi deployment.yml
+vi deployment.yml
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+:wq
+
+kubectl create -f deployment.yml
+kubectl get pods
+
+
+next,
+service create cheyali 
+kubectl create service nodeport nginx --tcp=80:80
+kubectl get svc
+copy the node server ip address enter in google ex: 16.113.120:32697  --->out put vasthundhi nginx dhi
+
+
+
+
+
+
   
 
   
