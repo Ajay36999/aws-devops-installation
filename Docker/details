@@ -97,6 +97,33 @@ docker stats ajaykumar
 cltr+c
 
 next,,
+Image creation
+mkdir nginx
+cd nginx
+nginx# touch nginx-conf
+nginx# vi nginx-conf
+FROM ubuntu:20.04
+RUN apt-get update
+RUN apt-get install ansible -y
+RUN apt-get install vim -y
+RUN mkdir /root/devops
+RUN touch /root/devops/sample
+RUN echo "this is ajay" > /root/devops/sample
+:wq
+nginx# ls
+ipudu image create cheyali
+nginx# docker build -f nginx-conf -t ubuntu-ansible:20.04 /root/nginx
+nginx# docker images
+image create iendhi so ipudu nenu create chesina image. nenu new gaa  create chesthuna container loki ravali
+nginx# docker run -it --name ajaykumar ubuntu-ansible:20.04 /bin/bash
+cd
+ls
+total information vasthundhi
+
+
+
+next,,
+ipudu nenu running lo vunna container nunchi inamge create chestha
 
 
 
