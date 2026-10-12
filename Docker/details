@@ -124,6 +124,51 @@ total information vasthundhi
 
 next,,
 ipudu nenu running lo vunna container nunchi inamge create chestha
+alrady oka container vundhi anuko ok naa ex:
+docker run -it --name ajay ubuntu /bin/bash --->cd
+apt update && apt install vim -y && apt install andible -y
+mkdir dir{1..10}
+ls
+cltr+p+q
+docker ps
+ipudu image create chedham 
+docker commit -m "new image" ajay ubuntu1234 
+docker images
+image create iendhi e image new gaa create chesa containers ki evachu
+docker run -it --name karimulla ununtu1234 /bin/bash -->cd
+ls
+total details chupisthundhi
+
+
+
+next,,
+ipudu webpage create chedham and image kuda and aaa image nee dockerhub ki push chedham
+mkdir nginx
+cd nginx
+nginx# touch nginx-conf
+nginx# touch index.html
+nginx# vi index.html ---->source code depoly chey
+nginx# vi nginx-conf
+FROM nginx
+RUN rm -rf /usr/share/nginx/html/*
+COPY index.html /usr/share/nginx/html
+RUN service nginx restart
+:wq
+nginx# docker build -f nginx-conf -t "nginx-webapps" .
+nginx# docker images
+cd
+docker run -d -p 1234:80 --name ajaykumar nginx-webapps --->copy id address and enter in google ex"134:35:6:1234
+ipudu e create chesina image nee dockerhub ki push chedham
+docker login 
+user name: ajaykumar369
+password: Mrmajnu@369
+docker images
+docker tag nginx-webapps ajaykumar369/webapps:hello
+docker psush ajaykumar369/webapps:hello
+dockerhub ki push iendhi check onces
+
+
+
 
 
 
