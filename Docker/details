@@ -51,6 +51,55 @@ container name change cheyali ante
 docker run  -itd --name newname imagename
 docker ps
 
+next,,
+container create cheyali ante
+docker run -it --name tom ubuntu /bin/bash
+docker ps
+[cltr+p+q]
+
+
+next,,
+user nee create cheyali ante
+useradd user1 -c "new user" -s /bin/bash -m
+cat /etc/passwd
+
+next,,
+local lo oka folder vundhi aa folder lo 100 file vunai so nenu oka container lo ki push chedham naukuntuna like googledrive 
+mkdir myfile
+cd myfiles
+myfiles# touch file{1..100}
+cd
+now create one container
+docker run -it --name ajay -v /root/myfiles:/tmp ubuntu /bin/bash
+cd
+pwd 
+cd /tmp
+tmp# ls
+file{1..100} file vachi like googledrive
+
+
+
+next,,
+container details chudali ante 
+docker insepet container name or ID | more
+
+
+next,,
+ipudu nenu container ki limit RAM evali ante
+first create one container
+docker run -itd --name ajaykumar -m 300M ubuntu /bin/bash
+docker ps
+docker stats ajaykumar
+cltr+c
+ipudu nenu ajaykumar ki 200 limit evali ante
+docker update -m 200M ajaykumar
+docker stats ajaykumar
+cltr+c
+
+next,,
+
+
+
 
 
 
