@@ -1,0 +1,163 @@
+﻿Adding a Host to Monitor
+In this tutorial, I will add an Ubuntu host to monitor to the Nagios server we have made above.
+
+
+Nagios Server IP : 192.168.1.9
+Ubuntu Host IP : 192.168.1.10
+
+
+Step 1 - Connect to ubuntu host
+ssh root@192.168.1.10
+Step 2 - Install NRPE Service
+sudo apt update && sudo apt upgrade -y
+sudo apt-get install nagios-nrpe-server nagios-plugins -y
+Step 3 - Configure NRPE
+After the installation is complete, edit the nrpe file /etc/nagios/nrpe.cfg:
+vi /etc/nagios/nrpe.cfg
+... and add Nagios Server IP 192.168.1.9 to the server_address. (private IP)
+
+
+server_address=192.168.1.9
+
+
+Configure server address
+Step 4 - Restart NRPE
+service nagios-nrpe-server restart
+Step 5 - Add Ubuntu Host to Nagios Server
+Please connect to the Nagios server:
+ssh root@192.168.1.9
+After the installation phase is complete, you can find the default configuration of Nagios in /usr/local/nagios/.
+We will configure Nagios and Nagios contact.
+Edit default nagios configuration with vim:
+
+
+vi /usr/local/nagios/etc/nagios.cfg
+uncomment line 51 for the host monitor configuration.
+
+
+cfg_dir=/usr/local/nagios/etc/servers
+Save and exit.
+Add a new folder named servers:
+mkdir -p /usr/local/nagios/etc/servers
+The Nagios contact can be configured in the contact.cfg file. To open it use:
+vi /usr/local/nagios/etc/objects/contacts.cfg
+Then replace the default email with your own email.
+
+
+
+
+Set email address.
+Then create a new file for the host configuration in /usr/local/nagios/etc/servers/.
+to configure multiple host servers create file with different names with extension .cfg and use file name as host name in script given below
+vi /usr/local/nagios/etc/servers/ubuntu_host1.cfg
+
+
+Add the following lines:
+
+
+# Ubuntu Host configuration file
+define host {
+        use                          linux-server
+        host_name                    ubuntu_host
+        alias                        Ubuntu Host
+        address                      192.168.1.10
+        register                     1
+}
+define service {
+      host_name                       ubuntu_host
+      service_description             PING
+      check_command                   check_ping!100.0,20%!500.0,60%
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+define service {
+      host_name                       ubuntu_host
+      service_description             Check Users
+      check_command           check_local_users!20!50
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+define service {
+      host_name                       ubuntu_host
+      service_description             Local Disk
+      check_command                   check_local_disk!20%!10%!/
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+define service {
+      host_name                       ubuntu_host
+      service_description             Check SSH
+      check_command                   check_ssh
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+define service {
+      host_name                       ubuntu_host
+      service_description             Total Process
+      check_command                   check_local_procs!250!400!RSZDT
+      max_check_attempts              2
+      check_interval                  2
+      retry_interval                  2
+      check_period                    24x7
+      check_freshness                 1
+      contact_groups                  admins
+      notification_interval           2
+      notification_period             24x7
+      notifications_enabled           1
+      register                        1
+}
+You can find many check_command in /usr/local/nagios/etc/objects/commands.cfg file. See there if you want to add more services like DHCP, POP etc.
+And now check the configuration:
+/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+
+
+... to see if the configuration is correct.
+Step 6 - Restart all services
+On the Ubuntu Host start NRPE Service:
+service nagios-nrpe-server restart
+... and on the Nagios server, start Apache and Nagios:
+service apache2 restart
+service nagios restart
+Step 7 - Testing the Ubuntu Host
+Open the Nagios server from the browser and see the ubuntu_host being monitored.
+The Ubuntu host is available on monitored host.
+
+
+All services monitored without error.
+
+
+All services are green
+Conclusion
+Nagios is an open source application for monitoring a system. Nagios has been widely used because of the ease of configuration. Nagios in support by various plugins, and you can even create your own plugins.
