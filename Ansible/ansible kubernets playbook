@@ -1,0 +1,13 @@
+---
+- hosts: kubernets
+  become: yes
+
+  tasks:
+    - name: Apply Kubernetes deployment
+      ansible.builtin.command:
+        cmd: /usr/bin/kubectl apply -f /root/deployment.yml
+
+    - name: Apply Kubernetes service
+      ansible.builtin.command:
+        cmd: /usr/bin/kubectl apply -f /root/service.yml
+
