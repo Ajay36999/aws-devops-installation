@@ -1,0 +1,5 @@
+---
+- hosts: docker
+  tasks:
+    - name: copy the .war to docker
+      ansible.builtin.copy: src=/root/WebApp.war dest=/root
