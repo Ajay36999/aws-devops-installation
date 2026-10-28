@@ -8,7 +8,7 @@
     - name: download tomcat
       ansible.builtin.get_url: url=https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.123/bin/apache-tomcat-9.0.123.tar.gz dest=/opt/tomcat
     - name: extraction
-      ansible.builtin.unarchive: src=/opt/tomcat/apache-tomcat-9.0.123.tar.gz dest=/opt/tomcat/  remote_src=yes
+      ansible.builtin.unarchive: src=/opt/tomcat/apache-tomcat-9.0.123.tar.gz dest=/opt/tomcat/ remote_src=yes
     - name: java
       become: yes
       ansible.builtin.apt: name=openjdk-11-jdk state=present update_cache=yes
